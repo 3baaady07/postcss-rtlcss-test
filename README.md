@@ -3,11 +3,11 @@
 ## Project structure
 `postcss-rtlcss-test`  
    |  
-   |__`scss`  
-   |    |__`carousel.scss`  
+   |--`scss`  
+   |    |--`carousel.scss`  
    |  
-   |__`index.html` (imports `index.js`)  
-   |__`index.js` (imports `carousel.scss`)  
+   |--`index.html` (imports `index.js`)  
+   |--`index.js` (imports `carousel.scss`)  
 
 ## Building the Project
 1. `npm i` to install dependencies (`postcss`, `postcss-rtlcss`, `rtlcss`, `sass`, `vite`).
