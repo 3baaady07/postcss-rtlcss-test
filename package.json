@@ -1,0 +1,24 @@
+{
+  "name": "postcss-rtlcss-test",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "compile:sass": "sass scss:assets/css",
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview",
+    "rtlcss": "rtlcss assets/css/carousel.css assets/css/carousel.rtl.css"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "postcss": "^8.4.32",
+    "postcss-rtlcss": "^4.0.9",
+    "rtlcss": "^4.1.1",
+    "sass": "^1.69.6",
+    "vite": "^5.0.10"
+  }
+}

@@ -1,0 +1,54 @@
+@function str-replace($string, $search, $replace: "") {
+   $index: str-index($string, $search);
+ 
+   @if $index {
+     @return str-slice($string, 1, $index - 1) + $replace + str-replace(str-slice($string, $index + str-length($search)), $search, $replace);
+   }
+ 
+   @return $string;
+ }
+
+$escaped-characters: (
+  ("<", "%3c"),
+  (">", "%3e"),
+  ("#", "%23"),
+  ("(", "%28"),
+  (")", "%29"),
+);
+
+@function escape-svg($string) {
+   @if str-index($string, "data:image/svg+xml") {
+     @each $char, $encoded in $escaped-characters {
+       // Do not escape the url brackets
+       @if str-index($string, "url(") == 1 {
+         $string: url("#{str-replace(str-slice($string, 6, -3), $char, $encoded)}");
+       } @else {
+         $string: str-replace($string, $char, $encoded);
+       }
+     }
+   }
+ 
+   @return $string;
+ }
+
+// scss-docs-start gray-color-variables
+$white:    #fff;
+
+$carousel-control-color:             $white;
+$carousel-control-prev-icon-bg:      url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='#{$carousel-control-color}'><path d='M11.354 1.646a.5.5 0 0 1 0 .708L5.707 8l5.647 5.646a.5.5 0 0 1-.708.708l-6-6a.5.5 0 0 1 0-.708l6-6a.5.5 0 0 1 .708 0z'/></svg>");
+$carousel-control-next-icon-bg:      url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='#{$carousel-control-color}'><path d='M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708z'/></svg>");
+
+/* rtl:options: {
+  "autoRename": true,
+  "stringMap":[ {
+    "name"    : "prev-next",
+    "search"  : "prev",
+    "replace" : "next"
+  } ]
+} */
+.carousel-control-prev-icon {
+  background-image: escape-svg($carousel-control-prev-icon-bg);
+}
+.carousel-control-next-icon {
+  background-image: escape-svg($carousel-control-next-icon-bg);
+}
