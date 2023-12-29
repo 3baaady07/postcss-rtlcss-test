@@ -4,7 +4,7 @@
 `postcss-rtlcss-test`  
    |  
    |\_\_`scss`  
-   |&emsp;|\_\_`carousel.scss`  
+   |&emsp;&emsp;|\_\_`carousel.scss`  
    |  
    |\_\_`index.html` (imports `index.js`)  
    |\_\_`index.js` (imports `carousel.scss`)  
